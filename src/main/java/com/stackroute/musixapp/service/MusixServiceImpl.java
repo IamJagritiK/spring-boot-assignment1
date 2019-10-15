@@ -61,12 +61,13 @@ public class MusixServiceImpl implements MusixService{
     }
 
     @Override
-    public void deleteById(int id) throws TrackNotFoundException {
+    public String deleteById(int id) throws TrackNotFoundException {
         Optional<Musix> userId = musixRepository.findById(id);
         if(userId.isEmpty()){
             throw new TrackNotFoundException("Track not found!");
         }
         musixRepository.deleteById(id);
+        return "done";
     }
 
     @Override
@@ -87,6 +88,12 @@ public class MusixServiceImpl implements MusixService{
         Musix user =  musixRepository.getOne(trackId);
                 user.setComments(trackComments);
         musixRepository.save(user);
+        return true;
+    }
+
+    @Override
+    public boolean deleteTrack(int trackId) {
+        musixRepository.deleteById(trackId);
         return true;
     }
 

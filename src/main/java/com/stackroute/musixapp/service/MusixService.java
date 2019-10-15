@@ -15,12 +15,13 @@ public interface MusixService {
 
     public Musix getById(int id) throws TrackNotFoundException;
 
-    public void deleteById(int id) throws TrackNotFoundException;
+    public String deleteById(int id) throws TrackNotFoundException;
 
     public boolean updateById(Musix musix, int id) throws TrackNotFoundException;
 
     public boolean UpdateComments(int trackId, String trackComments);
+    public boolean deleteTrack(int trackId);
 
-    /* public List<Musix> getByName(String name);*/
+
 
 }

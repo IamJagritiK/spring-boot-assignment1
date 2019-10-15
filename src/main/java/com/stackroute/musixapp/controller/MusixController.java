@@ -64,30 +64,20 @@ public class MusixController {
         return responseEntity;
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteMusix(@PathVariable int id) {
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteTrack(@PathVariable int id) {
+        ResponseEntity responseEntity;
         try {
-            musixService.deleteById(id);
-        } catch (TrackNotFoundException e) {
-            return e.getMessage();
+            responseEntity = new ResponseEntity<>(
+                    musixService.deleteById(id),
+                    HttpStatus.OK);
+        } catch (Exception ex) {
+            responseEntity = new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
         }
-
-        return "Data deleted";
+        return responseEntity;
     }
-/*
-    @PutMapping("/update/{id}")
 
-    public String updateMusix(@RequestBody Musix musix, @PathVariable int id) {
 
-        try {
-            musixService.updateById(musix, id);
-        } catch (TrackNotFoundException e) {
-            return e.getMessage();
-        }
-        return "Song Updated!";
-    }
-*/
 
     @PutMapping("/update")   public ResponseEntity UpdateComments(@RequestBody Musix user)
     {       ResponseEntity responseEntity;
