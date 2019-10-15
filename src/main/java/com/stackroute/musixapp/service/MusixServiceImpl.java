@@ -82,5 +82,13 @@ public class MusixServiceImpl implements MusixService{
         musixRepository.save(musix);
         return true;
     }
+    @Override
+    public boolean UpdateComments(int trackId,String trackComments) {
+        Musix user =  musixRepository.getOne(trackId);
+                user.setComments(trackComments);
+        musixRepository.save(user);
+        return true;
+    }
+
 
 }

@@ -75,7 +75,7 @@ public class MusixController {
 
         return "Data deleted";
     }
-
+/*
     @PutMapping("/update/{id}")
 
     public String updateMusix(@RequestBody Musix musix, @PathVariable int id) {
@@ -87,7 +87,12 @@ public class MusixController {
         }
         return "Song Updated!";
     }
+*/
 
+    @PutMapping("/update")   public ResponseEntity UpdateComments(@RequestBody Musix user)
+    {       ResponseEntity responseEntity;
+    responseEntity= new ResponseEntity<>(musixService.UpdateComments(user.getId(),user.getComments()), HttpStatus.OK);        return responseEntity;
+    }
 
 
 
